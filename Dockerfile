@@ -13,12 +13,11 @@ RUN apt-get install vim -y
 RUN apt-get install net-tools -y
 RUN apt-get install dos2unix -y
 RUN apt-get install wget -y
-RUN apt-get install software-properties-common -y 
+RUN apt-get install dirmngr gnupg apt-transport-https ca-certificates software-properties-common build-essential -y
 
-# installation of R 
-RUN apt-get install dirmngr gnupg apt-transport-https ca-certificates software-properties-common -y
+# installation of R
 RUN wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
-RUN add-apt-repository -y 'deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/'
+RUN add-apt-repository -y 'deb https://cloud.r-project.org/bin/linux/ubuntu jammy-cran40/'
 RUN apt-get install r-base -y
 ENV R_HOME /usr/lib/R
 RUN chown -R jovyan:users /usr/local/lib/R/site-library
