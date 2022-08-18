@@ -6,7 +6,7 @@ on:
   push:
     branches:
       - main
-
+ 
 jobs:
   push_to_registry:
     name: Push hcss jupyternotebook M docker images to deployment server
