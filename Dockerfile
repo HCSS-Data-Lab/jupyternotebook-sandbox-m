@@ -33,8 +33,34 @@ FROM hcss-jupyternotebook-m-base as hcss-jupyternotebook-m-deploy
 RUN pip install --upgrade pip
 RUN pip install sklearn
 
+RUN pip install cdt
+RUN sudo apt install graphviz libgraphviz-dev graphviz-dev pkg-config 
+RUN pip install pygraphviz 
+RUN pip install pydot
+RUN pip install pyparsing==1.5.7
+RUN pip install GML 
+RUN pip install unidecode 
+RUN pip install dowhy 
+RUN pip install statsmodels 
+RUN pip install pickle-mixin 
+RUN pip install pyyaml==5.4.1 
+RUN pip install git+https://github.com/bd2kccd/py-causal
+RUN pip install --force-reinstall numpy==1.22.1 
+RUN pip install --force-reinstall rpy2==3.5.1 
+
+
 # home folder for personal R packages
 RUN mkdir -p ~/R/x86_64-pc-linux-gnu-library/4.1
 
 # install dependencies for causal modelling
 RUN R -e "install.packages(c('devtools'), repos='https://cloud.r-project.org/')"
+RUN R -e "install.packages(c('BiocManager'), repos='https://cloud.r-project.org/')"
+RUN R -e "install.packages(c('sparsebn'), repos='https://cloud.r-project.org/')"
+RUN R -e "install.packages(c('pcalg'), repos='https://cloud.r-project.org/')"
+RUN R -e "install.packages(c('gRain'), repos='https://cloud.r-project.org/')"
+
+# The following are normally installed via Biocmanager
+RUN R -e "install.packages(c('graph'), repos='https://cloud.r-project.org/')"
+RUN R -e "install.packages(c('RBGL'), repos='https://cloud.r-project.org/')"
+RUN R -e "install.packages(c('Rgraphviz'), repos='https://cloud.r-project.org/')"
+RUN R -e "install.packages(c('gRain'), repos='https://cloud.r-project.org/')"
