@@ -1,7 +1,7 @@
 ###############################################################################################
 # HCSS jupyter - BASE
 ###############################################################################################
-FROM jupyter/scipy-notebook:2022-12-30 as hcss-jupyternotebook-m-base
+FROM jupyter/scipy-notebook:b86753318aa1 as hcss-jupyternotebook-m-base
 
 WORKDIR /var/www
 
@@ -14,6 +14,8 @@ RUN apt-get install net-tools -y
 RUN apt-get install dos2unix -y
 RUN apt-get install wget -y
 RUN apt-get install dirmngr gnupg apt-transport-https ca-certificates software-properties-common build-essential -y
+RUN apt-get install graphviz libgraphviz-dev graphviz-dev pkg-config -y
+RUN apt install default-jre default-jdk -y
 
 # installation of R
 RUN wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
@@ -31,22 +33,22 @@ FROM hcss-jupyternotebook-m-base as hcss-jupyternotebook-m-deploy
 
 # install pip applications
 RUN pip install --upgrade pip
-RUN pip install sklearn
+RUN pip install scikit-learn
 
 RUN pip install cdt
-RUN sudo apt install graphviz libgraphviz-dev graphviz-dev pkg-config 
-RUN pip install pygraphviz 
+RUN pip install pygraphviz
 RUN pip install pydot
-RUN pip install pyparsing==1.5.7
-RUN pip install GML 
-RUN pip install unidecode 
-RUN pip install dowhy 
-RUN pip install statsmodels 
-RUN pip install pickle-mixin 
-RUN pip install pyyaml==5.4.1 
+RUN pip install pyparsing
+RUN pip install GML
+RUN pip install unidecode
+RUN pip install dowhy
+RUN pip install statsmodels
+RUN pip install pickle-mixin
+RUN pip install pyyaml==5.4.1
+RUN pip install javabridge
 RUN pip install git+https://github.com/bd2kccd/py-causal
-RUN pip install --force-reinstall numpy==1.22.1 
-RUN pip install --force-reinstall rpy2==3.5.1 
+RUN pip install --force-reinstall numpy==1.21.6
+RUN pip install --force-reinstall rpy2==3.5.1
 
 
 # home folder for personal R packages
