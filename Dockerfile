@@ -1,6 +1,7 @@
 ###############################################################################################
 # HCSS jupyter - BASE
 ###############################################################################################
+# Based on: https://github.com/jupyter/docker-stacks
 FROM jupyter/scipy-notebook:b86753318aa1 as hcss-jupyternotebook-m-base
 
 WORKDIR /var/www
@@ -15,7 +16,7 @@ RUN apt-get install dos2unix -y
 RUN apt-get install wget -y
 RUN apt-get install dirmngr gnupg apt-transport-https ca-certificates software-properties-common build-essential -y
 RUN apt-get install graphviz libgraphviz-dev graphviz-dev pkg-config -y
-RUN apt install default-jre default-jdk -y
+RUN apt-get install default-jre default-jdk -y
 
 # installation of R
 RUN wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
