@@ -14,7 +14,7 @@ RUN apt-get install vim -y
 RUN apt-get install net-tools -y
 RUN apt-get install dos2unix -y
 RUN apt-get install wget -y
-RUN apt-get install dirmngr gnupg apt-transport-https ca-certificates software-properties-common build-essential -y
+RUN apt-get install dirmngr gnupg apt-transport-https ca-certificates build-essential -y
 RUN apt-get install graphviz libgraphviz-dev graphviz-dev pkg-config -y
 RUN apt-get install default-jre default-jdk -y
 
@@ -67,3 +67,4 @@ RUN R -e "install.packages(c('graph'), repos='https://cloud.r-project.org/')"
 RUN R -e "install.packages(c('RBGL'), repos='https://cloud.r-project.org/')"
 RUN R -e "install.packages(c('Rgraphviz'), repos='https://cloud.r-project.org/')"
 RUN R -e "install.packages(c('gRain'), repos='https://cloud.r-project.org/')"
+
